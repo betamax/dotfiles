@@ -1,4 +1,6 @@
-# My dotfiles
+# ~/.dotfiles
+
+These are the dotfiles that I use. I used [holman/dotfiles](https://github.com/holman/dotfiles) as a starting point, removed a lot and added quite a few things over the course of a year or two. I hadn't committed any changes up until now so I figured I'd package everything up a bit better and publish on GitHub - mainly so I can pull them on to new machines.
 
 ## Install
 
