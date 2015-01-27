@@ -6,8 +6,8 @@
 # using Homebrew.
 
 # If on OS X
-if [ "$(uname -s)" == "Darwin" ]
-then
+if [[ "$OSTYPE" == "darwin"* ]]; then
+
   # Check for Homebrew
   if test ! $(which brew)
   then
@@ -19,4 +19,5 @@ then
   brew install grc coreutils spark
 
   exit 0
+
 fi

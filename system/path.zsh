@@ -4,10 +4,8 @@ export PATH="/Users/Max/.rbenv/versions/2.0.0-p247/bin:$PATH"
 export MANPATH="/usr/local/man:/usr/local/mysql/man:/usr/local/git/man:$MANPATH"
 
 # Set EC2 vars if keys are present
-if ls "$HOME"/.ec2/pk-*.pem 1> /dev/null 2>&1; then
+if [ -d "$HOME"/.ec2/ ]; then
   export EC2_PRIVATE_KEY="$(/bin/ls "$HOME"/.ec2/pk-*.pem | /usr/bin/head -1)"
-fi
-if ls "$HOME"/.ec2/cert-*.pem 1> /dev/null 2>&1; then
   export EC2_CERT="$(/bin/ls "$HOME"/.ec2/cert-*.pem | /usr/bin/head -1)"
 fi
 
