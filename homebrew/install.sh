@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Homebrew
 #
@@ -6,7 +6,7 @@
 # using Homebrew.
 
 # If on OS X
-if [[ "$OSTYPE" == "darwin"* ]]; then
+if [[ "$(uname)" == "Darwin" ]]; then
 
   # Check for Homebrew
   if test ! $(which brew)
