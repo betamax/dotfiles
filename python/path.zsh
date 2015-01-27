@@ -1,0 +1,1 @@
+export PYTHONPATH="/Users/Max/Sites:/Users/Max/Sites/concept-navigator:$PYTHONPATH"

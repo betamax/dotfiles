@@ -38,3 +38,17 @@ do
 done
 
 unset config_files
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
+# http://jeroenjanssens.com/2013/08/16/quickly-navigate-your-filesystem-from-the-command-line.html
+function _completemarks {
+  reply=($(ls $MARKPATH))
+}
+
+compctl -K _completemarks jump
+compctl -K _completemarks unmark
+
+# added by travis gem
+[ -f /Users/Max/.travis/travis.sh ] && source /Users/Max/.travis/travis.sh

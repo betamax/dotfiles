@@ -1,0 +1,11 @@
+#!/bin/sh
+#
+# Clone new starter template to cwd
+
+if [ -d /Users/Max/Projects/starter-templates/$1 ]; then
+	git clone /Users/Max/Projects/starter-templates/$1 .
+	bower install
+	npm install
+else
+	echo "A starter template by the name $1 does not exist"
+fi

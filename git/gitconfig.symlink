@@ -1,0 +1,48 @@
+[hub]
+	protocol = https
+[user]
+	name = Max Novakovic
+	email = max@maxnov.com
+[credential]
+	helper = osxkeychain
+[alias]
+	co = checkout
+	count   = !git shortlog -sn
+	lg1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --branches --remotes --tags
+	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+	lg = !"git lg1"
+	undo = reset --soft 'HEAD^'
+  apply-gitignore = !git ls-files -ci --exclude-standard -z | xargs -0 git rm --cached
+	# Show the diff between the latest commit and the current state
+	d = !"git diff-index --quiet HEAD -- || clear; git diff --patch-with-stat"
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	ui = true
+[core]
+	excludesfile = /Users/Max/.gitignore
+	editor = vim
+[apply]
+	whitespace = nowarn
+[mergetool]
+	keepBackup = false
+	prompt = false
+[difftool]
+	prompt = false
+[help]
+	autocorrect = 1
+[push]
+	default = simple
+
+# Always rebase
+[branch]
+	autosetuprebase = always
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
+	rebase = true
+[http]
+	postBuffer = 524288000
+[url "https://"]
+	insteadOf = git://

@@ -1,1 +1,2 @@
-export EDITOR='subl'
+export EDITOR='sublw'
+export CLASSPATH='/Users/Max/Projects/lateral-boilerpipe/boilerpipe:/Users/Max/Projects/lateral-boilerpipe/boilerpipe/boilerpipe-1.2.0.jar:/Users/Max/Projects/lateral-boilerpipe/boilerpipe/lib/xerces-2.9.1.jar:/Users/Max/Projects/lateral-boilerpipe/boilerpipe/lib/nekohtml-1.9.13.jar:/Users/Max/Projects/lateral-boilerpipe/boilerpipe/jetty-all-9.0.4.v20130625.jar'

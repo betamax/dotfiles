@@ -3,3 +3,11 @@
 *~
 *.swp
 *.rbc
+.sass-cache
+_assets
+*.pyc
+Desktop.ini
+._*
+Thumbs.db
+.Spotlight-V100
+.Trashes

@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# Output the bitrate of an mp3 file. Check if it is 320 kbps or whatever.
+#
+# USAGE:
+#
+#   › bitrate my_file.mp3
+#   bit rate: 320000 bits per second
+
+afinfo "$1" |grep "bit rate"
