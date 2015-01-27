@@ -1,2 +1,9 @@
 #!/bin/sh
+#
+# Kills whatever is running on the specified port
+#
+# USAGE:
+#
+#   › kill-port 30000
+
 lsof -t -i tcp:$1 | xargs kill

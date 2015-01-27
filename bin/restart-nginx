@@ -1,2 +1,5 @@
 #!/bin/sh
+#
+# Restarts nginx
+
 sudo nginx -s stop && sudo nginx
