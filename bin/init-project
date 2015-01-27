@@ -2,8 +2,8 @@
 #
 # Clone new starter template to cwd
 
-if [ -d /Users/Max/Projects/starter-templates/$1 ]; then
-	git clone /Users/Max/Projects/starter-templates/$1 .
+if [ -d $HOME/Projects/starter-templates/$1 ]; then
+	git clone $HOME/Projects/starter-templates/$1 .
 	bower install
 	npm install
 else
