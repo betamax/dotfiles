@@ -7,6 +7,7 @@ These are the dotfiles that I use. I used [holman/dotfiles](https://github.com/h
 ```sh
 git clone https://github.com/betamax/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
+script/install
 script/bootstrap
 ```
 
