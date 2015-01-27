@@ -4,5 +4,8 @@
 #
 set -e
 
-# use -iru to search directories ack usually ignores (like .git)
-ag -i $1
+if [ -x $(which ag) ]; then
+  ag -i $1
+else
+  ack -i $1
+fi
