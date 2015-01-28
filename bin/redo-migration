@@ -1,0 +1,2 @@
+#!/bin/sh
+rake db:migrate:up VERSION=$1 && rake db:migrate:up VERSION=$1 RAILS_ENV=test
