@@ -68,7 +68,11 @@ rb_prompt() {
 }
 
 user() {
-  echo "%{$fg[yellow]%}%n%{$reset_color%} "
+  if [[ "$(uname)" == "Darwin" ]]; then
+    echo "%{$fg[yellow]%}%n%{$reset_color%}"
+  else
+    echo "%{$fg[yellow]%}%n@%m%{$reset_color%}"
+  fi
 }
 
 
@@ -76,7 +80,7 @@ directory_name() {
   echo "%{$fg_bold[cyan]%}%1/%\/%{$reset_color%}"
 }
 
-export PROMPT=$'\n$(user)in $(directory_name) $(git_dirty)$(need_push)\n› '
+export PROMPT=$'\n$(user) in $(directory_name) $(git_dirty)$(need_push)\n› '
 set_prompt () {
   export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
 }
