@@ -54,7 +54,11 @@ compctl -K _completemarks unmark
 [ -f /Users/Max/.travis/travis.sh ] && source /Users/Max/.travis/travis.sh
 
 # The next line updates PATH for the Google Cloud SDK.
-source '/Users/Max/google-cloud-sdk/path.zsh.inc'
+if [[ -a /Users/Max/google-cloud-sdk/path.zsh.inc ]]; then
+  source '/Users/Max/google-cloud-sdk/path.zsh.inc'
+fi
 
 # The next line enables bash completion for gcloud.
-source '/Users/Max/google-cloud-sdk/completion.zsh.inc'
+if [[ -a /Users/Max/google-cloud-sdk/completion.zsh.inc ]]; then
+  source '/Users/Max/google-cloud-sdk/completion.zsh.inc'
+fi
