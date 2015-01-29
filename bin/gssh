@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# Use Google Cloud Platform to SSH into a machine
+#
+# USAGE:
+#
+#   › gssh rubystackbox-1vma
+
+gcloud compute ssh max_lateral_io@$1 --zone europe-west1-b

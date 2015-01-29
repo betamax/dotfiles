@@ -19,3 +19,5 @@ fi
 alias pretty_json="python -mjson.tool"
 
 alias tar-sql="find . -name '*.sql' -exec tar -cvzf {}.tar.gz {} \;"
+
+alias gssh='nocorrect gssh'
