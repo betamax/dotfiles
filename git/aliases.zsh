@@ -1,5 +1,5 @@
 # The rest of my fun git aliases
-alias gl='git pull --rebase'
+alias gl='git pull origin HEAD'
 alias glog="git lg"
 alias gp='git push origin HEAD'
 alias gpd='git push origin HEAD && git aws.push'
