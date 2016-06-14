@@ -22,3 +22,8 @@ alias tar-sql="find . -name '*.sql' -exec tar -cvzf {}.tar.gz {} \;"
 
 alias gssh='nocorrect gssh'
 alias eb='nocorrect eb'
+
+alias electron='/Applications/Electron.app/Contents/MacOS/Electron'
+
+# Save public key to clipboard
+alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
