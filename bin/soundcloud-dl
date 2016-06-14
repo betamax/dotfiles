@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# Download a SoundCloud URL to an mp3
+youtube-dl -x -i --audio-format "mp3" --no-check-certificate \
+--audio-quality 0 -o "%(title)s.%(ext)s" "$1"
