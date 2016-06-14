@@ -1,0 +1,5 @@
+#compdef conn
+
+local -a options
+options=(`conn shortlist`)
+_describe 'values' options

@@ -62,3 +62,12 @@ fi
 if [[ -a /Users/Max/google-cloud-sdk/completion.zsh.inc ]]; then
   source '/Users/Max/google-cloud-sdk/completion.zsh.inc'
 fi
+export NVM_DIR="/Users/Max/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+#export JAVA_HOME=`/usr/libexec/java_home -v 1.6`
+#export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+
+# z - https://github.com/rupa/z
+. `brew --prefix`/etc/profile.d/z.sh

@@ -2,8 +2,6 @@
 alias gl='git pull origin HEAD'
 alias glog="git lg"
 alias gp='git push origin HEAD'
-alias gpd='git push origin HEAD && git aws.push'
-alias gpdnv='git push origin HEAD --no-verify && git aws.push'
 alias gd='git diff'
 alias gc='git commit'
 alias gca='git commit -a'
