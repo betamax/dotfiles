@@ -1,5 +1,6 @@
 # init according to man page
-if (( $+commands[rbenv] ))
-then
-  eval "$(rbenv init -)"
-fi
+export RBENV_ROOT=/usr/local/var/rbenv
+# Load rbenv automatically by appending
+# the following to ~/.zshrc:
+
+eval "$(rbenv init -)"
