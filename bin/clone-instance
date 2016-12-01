@@ -1,0 +1,107 @@
+#!/usr/bin/env python
+import argparse
+import subprocess
+import datetime
+import re
+import json
+import atexit
+import pprint
+
+TS = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+
+def gcloud(args):
+    return json.loads(subprocess.check_output(['gcloud', 'compute'] + args + ['--format', 'json']))
+
+def delete_snapshot(snapshot_name):
+    print 'Cleaning up snapshot.. %s' % snapshot_name
+    gcloud(['snapshots', 'delete', snapshot_name, '--quiet'])
+    print 'Snapshot deleted'
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        description='Clone an instance on Google Cloud Platform')
+    parser.add_argument('source_name', metavar='source-instance-name', type=str,
+                        help='name of the instance to clone')
+    parser.add_argument('target_name', metavar='target-instance-name', type=str,
+                        help='name of the new instance')
+    parser.add_argument('--zone', default='europe-west1-d',
+                        help='zone of the new instance (default: europe-west1-d)')
+    parser.add_argument('--disk-type', default='pd-ssd',
+                        help='type of the new disk (default: pd-ssd)')
+    args = parser.parse_args()
+
+
+    # Find the instance
+    instances = gcloud(['instances', 'list'])
+    instance = None
+    for instance in instances:
+        if instance['name'] == args.source_name:
+            instance = instance
+            break
+
+    if instance is None:
+        print 'Could not find an instance with the name %s' % args.source_name
+        exit(1)
+
+    print 'Found instance %s..' % (instance['name'])
+
+
+    # Find the boot disk of the instance
+    describe = gcloud(['instances', 'describe', instance['name'], '--zone', instance['zone']])
+    disk = None
+    for disk in describe['disks']:
+        if disk['boot'] == True:
+            disk = disk
+            break
+
+    if disk is None:
+        print 'Could not find a boot disk for instance with the name %s' % instance[0]
+        exit(1)
+
+    print 'Found boot disk %s..' % (disk['deviceName'])
+
+
+    # Create a snapshot of the disk
+    snapshot_name = disk['deviceName'] + '-' + TS
+    print 'Creating snapshot named %s..' % snapshot_name
+    snapshot = gcloud(['disks', 'snapshot', disk['deviceName'],
+        '--snapshot-names', snapshot_name,
+        '--zone', instance['zone']])
+
+    # Wrap next commands in a try/except in case it fails so can delete the snapshot before exiting
+    try:
+
+        # Create the new disk from the snapshot
+        print 'Creating new disk named %s from snapshot..' % args.target_name
+        gcloud(['disks', 'create', args.target_name,
+            '--size', str(snapshot[0]['diskSizeGb']),
+            '--source-snapshot', snapshot_name,
+            '--type', args.disk_type,
+            '--zone', args.zone])
+
+
+        # Create the new instance with the disk attached
+        print 'Creating new instance named %s..' % args.target_name
+        new_instance = gcloud(['instances', 'create', args.target_name,
+            '--machine-type', instance['machineType'],
+            '--network', 'default',
+            '--disk', 'name=' + args.target_name + ',device-name=' + args.target_name + ',mode=rw,boot=yes,auto-delete=yes',
+            '--zone', args.zone])
+
+        # Delete the temporary snapshot
+        delete_snapshot(snapshot_name)
+
+        # Done!
+        print '\n\nAll done!'
+        instance = gcloud(['instances', 'list', args.target_name])[0]
+        print 'Name:        %s' % instance['name']
+        print 'Status:      %s' % instance['status']
+        print 'Zone:        %s' % instance['zone']
+        print 'Type:        %s' % instance['machineType']
+        print 'External IP: %s' % instance['networkInterfaces'][0]['accessConfigs'][0]['natIP']
+        print 'Internal IP: %s' % instance['networkInterfaces'][0]['networkIP']
+
+    except subprocess.CalledProcessError as e:
+        # Something errored, clean up the snapshot
+        delete_snapshot(snapshot_name)
+        print e.output
