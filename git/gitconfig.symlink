@@ -2,7 +2,7 @@
 	protocol = https
 [user]
 	name = Max Novakovic
-	email = max@maxnov.com
+	email = max@lateral.io
 [credential]
 	helper = osxkeychain
 [alias]
@@ -52,3 +52,7 @@
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[fetch]
+	recurseSubmodules = false
+[commit]
+	template = /Users/Max/.stCommitMsg

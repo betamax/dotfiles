@@ -15,3 +15,6 @@ export ANDROID_HOME=/Users/Max/Documents/ADT/sdk
 export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
 export PROJECTS="$HOME/Lateral"
+
+export GOPATH=/Users/Max/.go
+export PATH=$GOPATH/bin:$PATH
