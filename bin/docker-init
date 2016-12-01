@@ -1,6 +1,0 @@
-#!/bin/sh
-#
-# Initialize docker
-
-boot2docker start
-$(boot2docker shellinit)
