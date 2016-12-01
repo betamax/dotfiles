@@ -1,0 +1,4 @@
+#!/bin/sh
+#
+# Use aria2c to download a file fast
+aria2c -x 16 -s 16 "$1"
