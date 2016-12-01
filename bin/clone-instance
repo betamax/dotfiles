@@ -34,9 +34,9 @@ if __name__ == "__main__":
     # Find the instance
     instances = gcloud(['instances', 'list'])
     instance = None
-    for instance in instances:
-        if instance['name'] == args.source_name:
-            instance = instance
+    for i in instances:
+        if i['name'] == args.source_name:
+            instance = i
             break
 
     if instance is None:
@@ -49,9 +49,9 @@ if __name__ == "__main__":
     # Find the boot disk of the instance
     describe = gcloud(['instances', 'describe', instance['name'], '--zone', instance['zone']])
     disk = None
-    for disk in describe['disks']:
-        if disk['boot'] == True:
-            disk = disk
+    for d in describe['disks']:
+        if d['boot'] == True:
+            disk = d
             break
 
     if disk is None:
